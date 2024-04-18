@@ -13,6 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 
 class SpringBootGithubActionApplicationTests {
+    int a;
     @Autowired
     private  ProductController productController;
     @Test
