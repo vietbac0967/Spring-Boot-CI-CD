@@ -33,6 +33,14 @@ class SpringBootGithubActionApplicationTests {
                         .createAt(LocalDate.now())
                 .build()).getId()).isEqualTo(3);
     }
-
+    @Test
+    void testCreateProductV1(){
+        assertThat(productController.insertProduct(Product.builder()
+                .id(4)
+                .name("banh hoi")
+                .price(2000)
+                .createAt(LocalDate.now())
+                .build()).getId()).isEqualTo(10);
+    }
 
 }
