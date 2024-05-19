@@ -36,17 +36,36 @@ public class ProductController {
     }
 
     @PostMapping("delete/{id}")
-    public Product deleteProduct(@PathVariable("id") int id) {
+    public int deleteProduct(@PathVariable("id") int id) {
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getId() == id) {
                 // If the product is found, remove it from the list and return it
                 iterator.remove();
+                return product.getId();
+            }
+        }
+        // If the product with the specified ID is not found, return null
+        return 0;
+    }
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable int id, @RequestBody Product product) {
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            Product find = iterator.next();
+            if (find.getId() == id) {
+                // If the product is found, remove it from the list
+                iterator.remove();
+                // Add the updated product to the list
+                products.add(product);
+                // Return the updated product
                 return product;
             }
         }
         // If the product with the specified ID is not found, return null
-        return null;
+        return Product.builder().build();
     }
+
+
 }
